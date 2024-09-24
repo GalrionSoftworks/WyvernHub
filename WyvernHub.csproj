@@ -1,0 +1,68 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+    <PropertyGroup>
+        <OutputType>WinExe</OutputType>
+        <TargetFramework>net8.0</TargetFramework>
+        <Nullable>enable</Nullable>
+        <BuiltInComInteropSupport>true</BuiltInComInteropSupport>
+        <ApplicationManifest>app.manifest</ApplicationManifest>
+        <AvaloniaUseCompiledBindingsByDefault>true</AvaloniaUseCompiledBindingsByDefault>
+    </PropertyGroup>
+
+    <ItemGroup>
+        <PackageReference Include="Avalonia" Version="11.2.0-beta2" />
+        <PackageReference Include="Avalonia.Angle.Windows.Natives" Version="2.1.22087.20231008" />
+        <PackageReference Include="Avalonia.BuildServices" Version="0.0.31" />
+        <PackageReference Include="Avalonia.Controls.ColorPicker" Version="11.2.0-beta2" />
+        <PackageReference Include="Avalonia.Controls.DataGrid" Version="11.2.0-beta2" />
+        <PackageReference Include="Avalonia.Desktop" Version="11.2.0-beta2" />
+        <PackageReference Include="Avalonia.Fonts.Inter" Version="11.2.0-beta2" />
+        <!--Condition below is needed to remove Avalonia.Diagnostics package from build output in Release configuration.-->
+        <PackageReference Condition="'$(Configuration)' == 'Debug'" Include="Avalonia.Diagnostics" Version="11.2.0-beta2" />
+        <PackageReference Include="Avalonia.FreeDesktop" Version="11.2.0-beta2" />
+        <PackageReference Include="Avalonia.Native" Version="11.2.0-beta2" />
+        <PackageReference Include="Avalonia.Remote.Protocol" Version="11.2.0-beta2" />
+        <PackageReference Include="Avalonia.Skia" Version="11.2.0-beta2" />
+        <PackageReference Include="Avalonia.Themes.Simple" Version="11.2.0-beta2" />
+        <PackageReference Include="Avalonia.Win32" Version="11.2.0-beta2" />
+        <PackageReference Include="Avalonia.X11" Version="11.2.0-beta2" />
+        <PackageReference Include="DynamicData" Version="9.0.4" />
+        <PackageReference Include="HarfBuzzSharp" Version="8.3.0-preview.4.1" />
+        <PackageReference Include="HarfBuzzSharp.NativeAssets.Linux" Version="8.3.0-preview.4.1" />
+        <PackageReference Include="HarfBuzzSharp.NativeAssets.macOS" Version="8.3.0-preview.4.1" />
+        <PackageReference Include="HarfBuzzSharp.NativeAssets.WebAssembly" Version="8.3.0-preview.4.1" />
+        <PackageReference Include="HarfBuzzSharp.NativeAssets.Win32" Version="8.3.0-preview.4.1" />
+        <PackageReference Include="Material.Icons.Avalonia" Version="2.1.10" />
+        <PackageReference Include="MicroCom.Runtime" Version="0.11.0" />
+        <PackageReference Include="ReactiveUI" Version="20.1.63" />
+        <PackageReference Include="SkiaSharp" Version="2.88.8" />
+        <PackageReference Include="SkiaSharp.NativeAssets.Linux" Version="2.88.8" />
+        <PackageReference Include="SkiaSharp.NativeAssets.macOS" Version="2.88.8" />
+        <PackageReference Include="SkiaSharp.NativeAssets.WebAssembly" Version="2.88.8" />
+        <PackageReference Include="SkiaSharp.NativeAssets.Win32" Version="2.88.8" />
+        <PackageReference Include="Splat" Version="15.2.22" />
+        <PackageReference Include="SukiUI" Version="6.0.0-beta8" />
+        <PackageReference Include="System.ComponentModel.Annotations" Version="5.0.0" />
+        <PackageReference Include="System.IO.Pipelines" Version="9.0.0-rc.1.24431.7" />
+        <PackageReference Include="System.Reactive" Version="6.0.1" />
+        <PackageReference Include="Tmds.DBus.Protocol" Version="0.20.0" />
+    </ItemGroup>
+
+    <ItemGroup>
+      <Folder Include="Assets\" />
+    </ItemGroup>
+    
+    <Target Name="RemoveSystemMemoryConflicts" BeforeTargets="ResolveAssemblyReferences">
+        <ItemGroup>
+            <_ReferenceToRemove Include="@(Reference)" Condition="'%(Reference.Identity)'=='System.Memory'" />
+            <Reference Remove="@(_ReferenceToRemove)" />
+            <Reference Include="System.Memory" />
+        </ItemGroup>
+    </Target>
+
+    <Target Name="RemoveSystemMemoryReferencePath" BeforeTargets="FindReferenceAssembliesForReferences">
+        <ItemGroup>
+            <_ReferencePathToRemove Include="@(ReferencePath)" Condition="'%(ReferencePath.NuGetPackageId)'=='System.Memory'" />
+            <ReferencePath Remove="@(_ReferencePathToRemove)" />
+        </ItemGroup>
+    </Target>
+</Project>
