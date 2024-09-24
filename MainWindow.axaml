@@ -11,9 +11,9 @@
   xmlns:pages="clr-namespace:WyvernHub.Pages"
   mc:Ignorable="d"
   Title="WyvernHub"
-  Width="800"
-  Height="450"
   WindowStartupLocation="CenterScreen"
+  HorizontalAlignment="Stretch"
+  VerticalAlignment="Stretch"
   BackgroundAnimationEnabled="True"
   >
   <sukiUi:SukiWindow.Hosts>
@@ -31,16 +31,20 @@
           <material:MaterialIcon Kind="ViewDashboard" />
         </sukiUi:SukiSideMenuItem.Icon>
         <sukiUi:SukiSideMenuItem.PageContent>
-          <pages:Dashboard/>
+          <ScrollViewer>
+            <pages:Dashboard DataContext="{Binding}"/>
+          </ScrollViewer>
         </sukiUi:SukiSideMenuItem.PageContent>
       </sukiUi:SukiSideMenuItem>
       
-      <sukiUi:SukiSideMenuItem Header="Games">
+      <sukiUi:SukiSideMenuItem Header="Payday 3">
         <sukiUi:SukiSideMenuItem.Icon>
-          <material:MaterialIcon Kind="Gamepad" />
+          <material:MaterialIcon Kind="Dollar" />
         </sukiUi:SukiSideMenuItem.Icon>
         <sukiUi:SukiSideMenuItem.PageContent>
-          <pages:Games/>
+          <ScrollViewer>
+            <pages:Payday3 />
+          </ScrollViewer>
         </sukiUi:SukiSideMenuItem.PageContent>
       </sukiUi:SukiSideMenuItem>
       
@@ -49,10 +53,23 @@
           <material:MaterialIcon Kind="Download" />
         </sukiUi:SukiSideMenuItem.Icon>
         <sukiUi:SukiSideMenuItem.PageContent>
-          <pages:Downloads/>
+          <ScrollViewer>
+            <pages:Downloads DataContext="{Binding}"/>
+          </ScrollViewer>
         </sukiUi:SukiSideMenuItem.PageContent>
       </sukiUi:SukiSideMenuItem>
     </sukiUi:SukiSideMenu.Items>
+    
+    <sukiUi:SukiSideMenuItem Header="Settings">
+      <sukiUi:SukiSideMenuItem.Icon>
+        <material:MaterialIcon Kind="Cog" />
+      </sukiUi:SukiSideMenuItem.Icon>
+      <sukiUi:SukiSideMenuItem.PageContent>
+        <ScrollViewer>
+          <pages:Settings DataContext="{Binding}"/>
+        </ScrollViewer>
+      </sukiUi:SukiSideMenuItem.PageContent>
+    </sukiUi:SukiSideMenuItem>
     
     <sukiUi:SukiSideMenu.FooterContent>
       <StackPanel HorizontalAlignment="Center" Orientation="Horizontal">

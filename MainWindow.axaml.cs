@@ -9,6 +9,6 @@ public partial class MainWindow : SukiWindow
   public MainWindow()
   {
     InitializeComponent();
-    DataContext = new MainWindowViewModel(new SukiToastManager(), new SukiDialogManager());
+    DataContext = new MainWindowViewModel(new SukiToastManager(), new SukiDialogManager(), this);
   }
 }
