@@ -13,33 +13,30 @@
              x:DataType="viewModels:Payday3ViewModel">
   <StackPanel Margin="16 16 16 16" Spacing="8">
     <sukiUi:GlassCard>
-      <Expander Header="PAYDAY 3">
-        <StackPanel Spacing="4" Orientation="Vertical">
-          <StackPanel Margin="16 0 16 0">
-            <TextBlock Text="Mods Directory" />
-            <TreeView ItemsSource="{Binding ModsFolderContents}">
-              <TreeView.DataTemplates>
-                <!-- Template for Directories -->
-                <TreeDataTemplate DataType="local:DirectoryInfo" 
-                                  ItemsSource="{Binding Children}">
-                  <StackPanel Orientation="Horizontal">
-                    <material:MaterialIcon Kind="Folder"/>
-                    <TextBlock Text="{Binding Name}" />
-                  </StackPanel>
-                </TreeDataTemplate>
+      <StackPanel Margin="16 0 16 0" Spacing="4">
+        <TextBlock Text="Payday 3" FontWeight="Bold" FontSize="24" />
+        <TextBlock Text="Mods Directory" />
+        <TreeView ItemsSource="{Binding ModsFolderContents}">
+          <TreeView.DataTemplates>
+            <!-- Template for Directories -->
+            <TreeDataTemplate DataType="local:DirectoryInfo" 
+                              ItemsSource="{Binding Children}">
+              <StackPanel Orientation="Horizontal">
+                <material:MaterialIcon Kind="Folder"/>
+                <TextBlock Text="{Binding Name}" />
+              </StackPanel>
+            </TreeDataTemplate>
 
-                <!-- Template for Files -->
-                <TreeDataTemplate DataType="io:FileInfo">
-                  <StackPanel Orientation="Horizontal">
-                    <material:MaterialIcon Kind="File"/>
-                    <TextBlock Text="{Binding Name}" />
-                  </StackPanel>
-                </TreeDataTemplate>
-              </TreeView.DataTemplates>
-            </TreeView>
-          </StackPanel>
-        </StackPanel>
-      </Expander>
+            <!-- Template for Files -->
+            <TreeDataTemplate DataType="io:FileInfo">
+              <StackPanel Orientation="Horizontal">
+                <material:MaterialIcon Kind="File"/>
+                <TextBlock Text="{Binding Name}" />
+              </StackPanel>
+            </TreeDataTemplate>
+          </TreeView.DataTemplates>
+        </TreeView>
+      </StackPanel>
     </sukiUi:GlassCard>
   </StackPanel>
 </UserControl>

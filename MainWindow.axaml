@@ -11,6 +11,7 @@
   xmlns:pages="clr-namespace:WyvernHub.Pages"
   mc:Ignorable="d"
   Title="WyvernHub"
+  Icon="/Assets/icon.png"
   WindowStartupLocation="CenterScreen"
   HorizontalAlignment="Stretch"
   VerticalAlignment="Stretch"
